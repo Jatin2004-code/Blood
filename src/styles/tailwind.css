@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core Colors */
+    --color-background: #FAFAFA; /* gray-50 */
+    --color-foreground: #1F2937; /* gray-800 */
+    --color-border: #E5E7EB; /* gray-200 */
+    --color-input: #FFFFFF; /* white */
+    --color-ring: #DC2626; /* red-600 */
+    
+    /* Card Colors */
+    --color-card: #FFFFFF; /* white */
+    --color-card-foreground: #1F2937; /* gray-800 */
+    
+    /* Popover Colors */
+    --color-popover: #FFFFFF; /* white */
+    --color-popover-foreground: #1F2937; /* gray-800 */
+    
+    /* Muted Colors */
+    --color-muted: #F9FAFB; /* gray-50 */
+    --color-muted-foreground: #6B7280; /* gray-500 */
+    
+    /* Primary Colors */
+    --color-primary: #DC2626; /* red-600 */
+    --color-primary-foreground: #FFFFFF; /* white */
+    
+    /* Secondary Colors */
+    --color-secondary: #0369A1; /* sky-700 */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    
+    /* Accent Colors */
+    --color-accent: #059669; /* emerald-600 */
+    --color-accent-foreground: #FFFFFF; /* white */
+    
+    /* Success Colors */
+    --color-success: #10B981; /* emerald-500 */
+    --color-success-foreground: #FFFFFF; /* white */
+    
+    /* Warning Colors */
+    --color-warning: #F59E0B; /* amber-500 */
+    --color-warning-foreground: #FFFFFF; /* white */
+    
+    /* Error/Destructive Colors */
+    --color-error: #EF4444; /* red-500 */
+    --color-error-foreground: #FFFFFF; /* white */
+    --color-destructive: #EF4444; /* red-500 */
+    --color-destructive-foreground: #FFFFFF; /* white */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  /* Glassmorphic Card Styles */
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20 shadow-lg;
+  }
+
+  /* Heartbeat Animation */
+  .heartbeat {
+    animation: heartbeat 1.2s ease-in-out infinite;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  /* Blood Drop Animation */
+  .blood-drop {
+    animation: bloodDrop 2s ease-in-out infinite;
+  }
+
+  @keyframes bloodDrop {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-4px) scale(1.1);
+      opacity: 0.8;
+    }
+  }
+
+  /* Ambient Status Glow */
+  .status-glow-success {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .status-glow-warning {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .status-glow-error {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  /* Progressive Disclosure */
+  .progress-step {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .progress-step.active {
+    @apply transform scale-105;
+  }
+
+  /* Gesture-Aware Interactions */
+  .swipe-reveal {
+    @apply transition-transform duration-200 ease-out;
+  }
+
+  .swipe-reveal:hover {
+    @apply transform translate-x-2;
+  }
+}
+
+@layer utilities {
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    .heartbeat,
+    .blood-drop,
+    .progress-step,
+    .swipe-reveal {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* Custom Shadow System */
+  .shadow-card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .shadow-modal {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Emergency Mode Utilities */
+  .emergency-pulse {
+    animation: emergencyPulse 1s ease-in-out infinite;
+  }
+
+  @keyframes emergencyPulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+}
